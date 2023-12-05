@@ -16,7 +16,13 @@ app.get("/blog/:artigo?", (req, res) => {
 })
 
 app.get("/canal/youtube", (req, res) => {
-  res.send("<h1>Bem vindo ao meu canal!</h1>")
+  var canal = req.query["canal"]
+
+  if (canal) {
+    res.send(canal)
+  } else {
+    res.send("Nenhum canal fornecido!")
+  }
 })
 
 app.get("/ola/:nome/:empresa", (req, res) => {
