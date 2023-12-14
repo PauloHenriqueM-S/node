@@ -23,7 +23,12 @@ app.use(bodyParser.json())
 
 // Rotas
 app.get('/', (req, res) => {
-  res.render("index")
+  Pergunta.findAll({ raw: true }).then(perguntas => {
+    res.render("index", {
+      perguntas: perguntas
+    })
+  })
+  // select * from perguntas
 })
 
 app.get('/perguntar', (req, res) => {
