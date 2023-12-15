@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const connection = require('./database/database')
 const Pergunta = require('./database/Pergunta')
+const { where } = require('sequelize')
 // Database
 
 connection.authenticate()
@@ -48,6 +49,20 @@ app.post("/salvarpergunta", (req, res) => {
     descricao: descricao
   }).then(() => {
     res.redirect('/')
+  })
+})
+
+app.get('/pergunta/:id', (req, res) => {
+  var id = req.params.id
+
+  Pergunta.findOne({
+    where: { id: id }
+  }).then(pergunta => {
+    if (pergunta != undefined) { // Pergunta encontrada
+      res.render('pergunta')
+    } else { // Não encontrada
+      res.redirect('/')
+    }
   })
 })
 
