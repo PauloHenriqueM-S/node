@@ -11,6 +11,12 @@
           <%= pergunta.descricao %>
         </p>
         <hr>
+        <form action="">
+          <h3>Responda</h3>
+          <label for="">Resposta:</label>
+          <textarea placeholder="Digite sua resposta" class="form-control" name="corpo"></textarea><br>
+          <button type="submit" class="btn btn-primary">Responder</button>
+        </form>
       </div>
   </body>
   <%- include ('partials/footer.ejs') %>
